@@ -1,5 +1,6 @@
 import requests
 import json
+from flask import jsonify
 
 from bs4 import BeautifulSoup
 
@@ -18,5 +19,5 @@ def downloadurl(videourl):
     pos = requests.post(api_url, data=myobj, headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko/20100101 Firefox/86.0","Accept":"*/*","Accept-Language":"en-US,en;q=0.5","Accept-Encoding":"gzip, deflate","HX-Request":"true","HX-Target":"target","HX-Current-URL":"https://ssstik.io/","HX-Active-Element":"submit","Content-Type":"application/x-www-form-urlencoded; charset=UTF-8","Origin":"https://ssstik.io","Connection":"close"}, cookies=page.cookies)
     soup2 = BeautifulSoup(pos.text)
     cdnurl=soup2.find(class_='pure-button pure-button-primary is-center u-bl dl-button download_link without_watermark_direct').get('href')
-    print(cdnurl)
-    return json.dumps({'cdnurl': cdnurl})
+    return jsonify({"cdnurl":cdnurl})
+    #return json.dumps({'cdnurl': cdnurl})
