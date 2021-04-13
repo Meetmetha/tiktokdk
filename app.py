@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/', methods=["GET", "POST"])
 def hello_world():
     if request.method == "GET":
-        return "Follow POST Request with URL param"
+        return os.environ['SECRET_KEY']
     if request.method == "POST":
         req_data = request.json
         url = req_data['url']
